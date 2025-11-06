@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<!-- saved from url=(0385)https://b1.eu-central-1.storage.railway.app/stashed-dumpling-46xkfzie/renders/68da88c90cbc4aa5a4a2f85604b8d170.html?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=GOX0DRY7X5C4CN41MP05%2F20251106%2Feu-central-1%2Fs3%2Faws4_request&X-Amz-Date=20251106T174247Z&X-Amz-Expires=3600&X-Amz-SignedHeaders=host&X-Amz-Signature=3078af1b2ee1cb86b9582ce0e693a4902e60a5b046e6af13ec1191c417e7da47 -->
+<html lang="en" style="--cube-transition-duration: 0.720s; --glare-transition-duration: 0.720s;"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Refined Variation 3: Sleek 3D Cube</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com/">
+    <link rel="preconnect" href="https://fonts.gstatic.com/" crossorigin="">
+    <link href="./Refined Variation 3_ Sleek 3D Cube_files/css2" rel="stylesheet">
+    <style>
+        body { margin: 0; display: flex; flex-direction: column; justify-content: center; align-items: center; height: 100vh; overflow: hidden; font-family: 'Inter', sans-serif; color: white; background: radial-gradient(circle, #222 0%, #000 80%); }
+        :root {
+            --cube-transition-duration: 1.2s;
+            --glare-transition-duration: 1.2s;
+        }
+        h1 { margin-bottom: 20px; font-weight: normal; }
+        #reel-container { width: 405px; height: 720px; position: relative; perspective: 1800px; }
+        #cube {
+            width: 100%; height: 100%; position: relative; transform-style: preserve-3d;
+            transition: transform var(--cube-transition-duration) cubic-bezier(0.83, 0, 0.17, 1);
+        }
+
+        /* --- CUBE & FACE STYLING --- */
+        .clip {
+            position: absolute; width: 100%; height: 100%; top: 0; left: 0;
+            backface-visibility: hidden;
+            overflow: hidden;
+        }
+        .clip video { width: 100%; height: 100%; object-fit: cover; }
+
+        /* Subtle wireframe effect */
+        .clip::before {
+            content: ''; position: absolute; top: 0; left: 0; width: 100%; height: 100%;
+            box-sizing: border-box;
+            box-shadow: inset 0 0 15px 3px rgba(255, 242, 0, 0.4);
+        }
+
+        /* Soft lighting glare */
+        .lighting-glare {
+            position: absolute; top: -10%; left: -150%; width: 75%; height: 120%;
+            background: linear-gradient(to right, rgba(255,255,255,0) 0%, rgba(255,255,255,0.15) 50%, rgba(255,255,255,0) 100%);
+            transform: skewX(-25deg);
+            transition: left var(--glare-transition-duration) cubic-bezier(0.25, 1, 0.5, 1);
+        }
+        .clip.active-face .lighting-glare { left: 150%; }
+
+        /* Positioning the faces */
+        #clip1 { transform: rotateY(0deg) translateZ(202.5px); }
+        #clip2 { transform: rotateY(-90deg) translateZ(202.5px); }
+        #clip3 { transform: rotateY(-180deg) translateZ(202.5px); }
+
+        /* Simple, clean rotation classes */
+        #cube.show-scene2 { transform: rotateY(90deg); }
+        #cube.show-scene3 { transform: rotateY(180deg); }
+
+        /* --- TEXT & CTA in 3D Space --- */
+        .text-overlay {
+            position: absolute; top: 0; left: 50%; width: 90%; height: 100%; text-align: center;
+            transform-style: preserve-3d; opacity: 0;
+            transition: opacity 0.5s, transform 0.8s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            transform: translateX(-50%) translateZ(-50px) scale(0.8);
+        }
+        .text-overlay.animate {
+            opacity: 1;
+            transform: translateX(-50%) translateZ(40px) scale(1);
+        }
+
+        .text-overlay .pop-text, .text-overlay #cta-button {
+            position: absolute; left: 50%; transform: translate(-50%, -50%);
+        }
+
+        .text-overlay .pop-text { top: 25%; }
+
+        .pop-text { font-family: 'Anton', sans-serif; font-size: 60px; line-height: 1.1; color: white; text-transform: uppercase; text-shadow: 4px 4px 15px rgba(0,0,0,1); }
+        #cta-button {
+            font-family: 'Inter', sans-serif; font-weight: 700; font-size: 24px; color: black;
+            background: linear-gradient(45deg, #fff200, #ffc400); padding: 18px 48px;
+            border-radius: 50px; display: inline-block; white-space: nowrap;
+            box-shadow: 0px 5px 20px rgba(255, 200, 0, 0.5);
+        }
+        .text-overlay #cta-button { top: 75%; }
+    </style>
+</head>
+<body>
+    <audio id="focus-sfx" src="https://b1.eu-central-1.storage.railway.app/stashed-dumpling-46xkfzie/assets/82c2c691fdf74f88a92b2239b9e23b10.mp3?X-Amz-Algorithm=AWS4-HMAC-SHA256&amp;X-Amz-Credential=GOX0DRY7X5C4CN41MP05%2F20251106%2Feu-central-1%2Fs3%2Faws4_request&amp;X-Amz-Date=20251106T174243Z&amp;X-Amz-Expires=3600&amp;X-Amz-SignedHeaders=host&amp;X-Amz-Signature=2f03b026983412c925bd4aef054b883cc7dc02f7fbb203ecacae6e91de743ae4" preload="auto"></audio>
+    <audio id="transition-sfx" src="https://b1.eu-central-1.storage.railway.app/stashed-dumpling-46xkfzie/assets/c7c4e0ff4aac4afa92e4152ded6ea6f7.mp3?X-Amz-Algorithm=AWS4-HMAC-SHA256&amp;X-Amz-Credential=GOX0DRY7X5C4CN41MP05%2F20251106%2Feu-central-1%2Fs3%2Faws4_request&amp;X-Amz-Date=20251106T174243Z&amp;X-Amz-Expires=3600&amp;X-Amz-SignedHeaders=host&amp;X-Amz-Signature=5d7afd6c525e1b574bc3928c9a58f4e96fe9342c2388a08dcfc7e62993ad575f" preload="auto"></audio>
+    <audio id="cta-sfx" src="https://b1.eu-central-1.storage.railway.app/stashed-dumpling-46xkfzie/assets/d52cb5b1345042ac8615a20105f952ce.mp3?X-Amz-Algorithm=AWS4-HMAC-SHA256&amp;X-Amz-Credential=GOX0DRY7X5C4CN41MP05%2F20251106%2Feu-central-1%2Fs3%2Faws4_request&amp;X-Amz-Date=20251106T174244Z&amp;X-Amz-Expires=3600&amp;X-Amz-SignedHeaders=host&amp;X-Amz-Signature=2db7fe7584a3db6c94244aa6ac86f43f4307eaf346fa64d094e67bacd03019bd" preload="auto"></audio>
+
+    <div id="reel-container">
+        <div id="cube" class="show-scene2 show-scene3">
+            <div id="clip1" class="clip">
+                <div class="lighting-glare"></div>
+                <video src="https://b1.eu-central-1.storage.railway.app/stashed-dumpling-46xkfzie/assets/c79969b9e9da46fba5d57d3b6a5a69da.mp4?X-Amz-Algorithm=AWS4-HMAC-SHA256&amp;X-Amz-Credential=GOX0DRY7X5C4CN41MP05%2F20251106%2Feu-central-1%2Fs3%2Faws4_request&amp;X-Amz-Date=20251106T174245Z&amp;X-Amz-Expires=3600&amp;X-Amz-SignedHeaders=host&amp;X-Amz-Signature=b956fbce69f3572c5fd8111c58a630f995e674601fa27d9a893bfa822c1a1834" muted="" loop="" playsinline=""></video>
+            </div>
+            <div id="clip2" class="clip">
+                <div class="lighting-glare"></div>
+                <video src="https://b1.eu-central-1.storage.railway.app/stashed-dumpling-46xkfzie/assets/13fc9e52bc6c49818a2f51c67d9ba10a.mp4?X-Amz-Algorithm=AWS4-HMAC-SHA256&amp;X-Amz-Credential=GOX0DRY7X5C4CN41MP05%2F20251106%2Feu-central-1%2Fs3%2Faws4_request&amp;X-Amz-Date=20251106T174246Z&amp;X-Amz-Expires=3600&amp;X-Amz-SignedHeaders=host&amp;X-Amz-Signature=24968b1bfcf3e4bab6225ea97899dc27b8bf9496b5fce270e2e9cd39fc24943a" muted="" loop="" playsinline=""></video>
+            </div>
+            <div id="clip3" class="clip active-face">
+                <div class="lighting-glare"></div>
+                <video src="https://b1.eu-central-1.storage.railway.app/stashed-dumpling-46xkfzie/assets/62d422ae989f46458e661e0a53b9b98f.mp4?X-Amz-Algorithm=AWS4-HMAC-SHA256&amp;X-Amz-Credential=GOX0DRY7X5C4CN41MP05%2F20251106%2Feu-central-1%2Fs3%2Faws4_request&amp;X-Amz-Date=20251106T174247Z&amp;X-Amz-Expires=3600&amp;X-Amz-SignedHeaders=host&amp;X-Amz-Signature=c47b0e72153312806d66e989feaaaa4f56c71c1acd994e8a43b9a4da09d05d3f" muted="" loop="" playsinline=""></video>
+                <div class="text-overlay animate" id="final-text">
+                    <div class="pop-text">Hell ya</div>
+                    <div id="cta-button">Learn More &gt;&gt;</div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        const cube = document.getElementById('cube');
+        const clips = [document.getElementById('clip1'), document.getElementById('clip2'), document.getElementById('clip3')];
+        const videos = clips.map((clip) => clip.querySelector('video'));
+        const finalText = document.getElementById('final-text');
+        const focusSfx = document.getElementById('focus-sfx'), transitionSfx = document.getElementById('transition-sfx'), ctaSfx = document.getElementById('cta-sfx');
+
+        const SPEED_FACTOR = 0.6;               // 1 keeps original pacing, lower values speed things up
+        const BASE_CLIP_DURATIONS = [4000, 5200, 6000];
+        const BASE_FOCUS_SOUND_DELAY = 150;
+        const BASE_TRANSITION_SOUND_LEAD = 50;
+        const BASE_CTA_SOUND_DELAY = 1200;
+        const BASE_CUBE_TRANSITION = 1.2;
+        const BASE_GLARE_TRANSITION = 1.2;
+
+        const scale = (value) => Math.round(value * SPEED_FACTOR);
+        const CLIP_DURATIONS = BASE_CLIP_DURATIONS.map(scale);
+        const FOCUS_SOUND_DELAY = scale(BASE_FOCUS_SOUND_DELAY);
+        const TRANSITION_SOUND_LEAD = scale(BASE_TRANSITION_SOUND_LEAD);
+        const CTA_SOUND_DELAY = scale(BASE_CTA_SOUND_DELAY);
+
+        document.documentElement.style.setProperty('--cube-transition-duration', `${(BASE_CUBE_TRANSITION * SPEED_FACTOR).toFixed(3)}s`);
+        document.documentElement.style.setProperty('--glare-transition-duration', `${(BASE_GLARE_TRANSITION * SPEED_FACTOR).toFixed(3)}s`);
+
+        const CUBE_TRANSITION_DURATION_MS = Math.round(BASE_CUBE_TRANSITION * SPEED_FACTOR * 1000);
+
+        function safePlay(video) {
+            const playPromise = video.play();
+            if (playPromise && typeof playPromise.catch === 'function') {
+                playPromise.catch(() => {});
+            }
+        }
+
+        function playSound(audioEl) {
+            audioEl.currentTime = 0;
+            audioEl.play();
+        }
+
+        function schedule(delay, fn) {
+            setTimeout(fn, Math.max(0, delay));
+        }
+
+        function resetVideos() {
+            videos.forEach((video) => {
+                video.pause();
+                video.currentTime = 0;
+            });
+        }
+
+        function activateClip(index) {
+            const clip = clips[index];
+            const video = videos[index];
+            clip.classList.add('active-face');
+            video.currentTime = 0;
+            safePlay(video);
+        }
+
+        function deactivateClip(index) {
+            const clip = clips[index];
+            const video = videos[index];
+            clip.classList.remove('active-face');
+            schedule(CUBE_TRANSITION_DURATION_MS, () => {
+                if (!clip.classList.contains('active-face')) {
+                    video.pause();
+                }
+            });
+        }
+
+        function playSequence() {
+            resetVideos();
+
+            activateClip(0);
+
+            schedule(FOCUS_SOUND_DELAY, () => playSound(focusSfx));
+
+            const firstTransitionAt = CLIP_DURATIONS[0];
+            schedule(firstTransitionAt - TRANSITION_SOUND_LEAD, () => playSound(transitionSfx));
+            schedule(firstTransitionAt, () => {
+                deactivateClip(0);
+                cube.classList.add('show-scene2');
+                activateClip(1);
+            });
+
+            const secondTransitionAt = CLIP_DURATIONS[0] + CLIP_DURATIONS[1];
+            schedule(secondTransitionAt - TRANSITION_SOUND_LEAD, () => playSound(transitionSfx));
+            schedule(secondTransitionAt, () => {
+                deactivateClip(1);
+                cube.classList.add('show-scene3');
+                activateClip(2);
+                schedule(CTA_SOUND_DELAY, () => {
+                    finalText.classList.add('animate');
+                    playSound(ctaSfx);
+                });
+            });
+        }
+        window.onload = playSequence;
+    </script>
+
+
+</body><div><template shadowrootmode="closed"><style></style><style></style><style></style><div style="display: none; position: absolute;" class="engine-editor common"><h4 style="padding-left: 20px; background: url(&#39;chrome-extension://gipnlpdeieaidmmeaichnddnmjmcakoe/img/icon16.png&#39;) no-repeat left top;"><input style="background: url(&#39;chrome-extension://gipnlpdeieaidmmeaichnddnmjmcakoe/img/close.png&#39;) no-repeat center center;" class="close" type="button" value=""><span class="title">Add search engine</span></h4><div style="display: none;"><span>Name:</span><input type="text"><span>Url:</span><input type="text"><span>Icon url:</span><input type="text"></div><div style="background: url(&quot;chrome-extension://gipnlpdeieaidmmeaichnddnmjmcakoe/img/ajax-loader.gif&quot;) center center no-repeat; height: 50px; width: 100%;"></div><p style="display: none; color: #CB4345;"></p><input type="button" value="Save"><input type="button" value="Cancel"></div></template></div></html>
